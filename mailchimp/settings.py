@@ -1,10 +1,7 @@
 import importlib
-import warnings
 
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
-
-from .exceptions import MailchimpWarning
 
 
 def get_callable(string_to_callable):
@@ -25,8 +22,6 @@ CACHE_TIMEOUT = getattr(settings, 'MAILCHIMP_CACHE_TIMEOUT', 300)
 
 WEBHOOK_KEY = getattr(settings, 'MAILCHIMP_WEBHOOK_KEY', '')
 if not WEBHOOK_KEY:
-    warnings.warn("you did not define a MAILCHIMP_WEBHOOK_KEY setting. "
-        "django-mailchimp will create a random one by itself", MailchimpWarning)
     import string
     import random
     alphanum = string.ascii_letters + string.digits
